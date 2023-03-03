@@ -8,6 +8,8 @@
 		"ghcr.io/eitsupi/devcontainer-features/jq-likes:0": {},
 		"ghcr.io/guiyomh/features/vim:0": {},
 		"ghcr.io/jungaretti/features/make:1": {},
-		"ghcr.io/devcontainers-contrib/features/neovim-apt-get:1": {}
+		"ghcr.io/devcontainers-contrib/features/neovim-apt-get:1": {},
+		"ghcr.io/devcontainers/features/python:1": {},
+		"ghcr.io/devcontainers/features/anaconda:1": {}
 	}
 }
