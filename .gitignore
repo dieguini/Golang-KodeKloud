@@ -80,3 +80,18 @@ target/
 
 # Trash [Anaconda]
 .Trash*
+
+# PYENV
+/shims
+/version
+/versions
+/sources
+/cache
+/libexec/*.dylib
+/src/Makefile
+/src/*.o
+/bats/
+/default-packages
+.idea
+*.un~
+.python-version
