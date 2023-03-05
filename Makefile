@@ -39,3 +39,42 @@ golang_playbook:
 	sudo chown $(USER):$(USER) $(HOMEPATH)/.local/share/jupyter/kernels/gophernotes/kernel.json
 	sudo chmod +w $(HOMEPATH)/.local/share/jupyter/kernels/gophernotes/kernel.json
 	sudo sed "s|gophernotes|$(GOPATH)/bin/gophernotes|" < $(HOMEPATH)/.local/share/jupyter/kernels/gophernotes/kernel.json.in > $(HOMEPATH)/.local/share/jupyter/kernels/gophernotes/kernel.json
+
+.PHONY: pyenv
+pyenv:
+	@echo "=========== [PYENV - PRE REQUISIT] ==========="
+	rm -rf ~/.pyenv
+	git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+	@echo "[PYENV - BASH]"
+	echo '# PYENV VARIABLES' >> ~/.bashrc
+	echo 'export PYENV_ROOT="$(HOME)/.pyenv"' >> ~/.bashrc
+	echo 'command -v pyenv >/dev/null || export PATH="$(PYENV_ROOT)/bin:$(PATH)"' >> ~/.bashrc
+	echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+	@echo "[PYENV - PROFILE]"
+	echo '# PYENV VARIABLES' >> ~/.bashrc
+	echo 'export PYENV_ROOT="$(HOME)/.pyenv"' >> ~/.profile
+	echo 'command -v pyenv >/dev/null || export PATH="$(PYENV_ROOT)/bin:$(PATH)"' >> ~/.profile
+	echo 'eval "$(pyenv init -)"' >> ~/.profile
+	
+.PHONY: pyenv_virtenv
+pyenv_virtenv:
+	@echo "=========== [PYENV - VIRTUAL ENVIRONMENT] ==========="
+	git clone https://github.com/pyenv/pyenv-virtualenv.git $(PYENV_ROOT)/plugins/pyenv-virtualenv
+	@echo "[PYENV - BASH]"
+	echo '## pyenv Module virtualenv' >> ~/.bashrc
+	echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+	@echo "[PYENV - PROFILE]"
+	echo '## pyenv Module virtualenv' >> ~/.profile
+	echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.profile
+
+.PHONY: python_venv
+python_venv:
+	@echo "=========== [PYTHON VIRTUAL ENVIRONMENT] ==========="
+	pyenv install	3.9.16
+	pyenv virtualenv 3.9.16 kodekloud_env
+
+.PHONY: precom_tool3
+precom_tool3:
+	@echo "=========== [PRE-COMMIT & TOOL3 INSTALL - WEBHOOK] ==========="
+	pip install pre-commit
+	pre-commit install
