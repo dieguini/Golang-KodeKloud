@@ -1,0 +1,13 @@
+package main
+import "fmt"
+
+func main()  {
+	var a string
+	var b int
+	fmt.Printf("Enter string and number: ")
+	count, err := fmt.Scanf("%s %d", &a, &b)
+	fmt.Println("count: ", count)
+	fmt.Println("error: ", err)
+	fmt.Println("a: ", a)
+	fmt.Println("b: ", b)
+}
