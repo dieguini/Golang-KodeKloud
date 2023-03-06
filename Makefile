@@ -2,8 +2,11 @@ SHELL := /bin/bash
 
 # Start
 
-all : config bash installgitflow golang_playbook
-.PHONY : all
+all: config bash installgitflow
+.PHONY: all
+
+all_golang: golang_playbook pyenv pyenv_virtenv python_venv precom_tool3
+.PHONY: all_golang
 
 # Local
 
@@ -49,12 +52,12 @@ pyenv:
 	echo '# PYENV VARIABLES' >> ~/.bashrc
 	echo 'export PYENV_ROOT="$(HOME)/.pyenv"' >> ~/.bashrc
 	echo 'command -v pyenv >/dev/null || export PATH="$(PYENV_ROOT)/bin:$(PATH)"' >> ~/.bashrc
-	echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+	echo 'eval "$$(pyenv init -)"' >> ~/.bashrc
 	@echo "[PYENV - PROFILE]"
-	echo '# PYENV VARIABLES' >> ~/.bashrc
+	echo '# PYENV VARIABLES' >> ~/.profile
 	echo 'export PYENV_ROOT="$(HOME)/.pyenv"' >> ~/.profile
 	echo 'command -v pyenv >/dev/null || export PATH="$(PYENV_ROOT)/bin:$(PATH)"' >> ~/.profile
-	echo 'eval "$(pyenv init -)"' >> ~/.profile
+	echo 'eval "$$(pyenv init -)"' >> ~/.profile
 	
 .PHONY: pyenv_virtenv
 pyenv_virtenv:
@@ -62,10 +65,10 @@ pyenv_virtenv:
 	git clone https://github.com/pyenv/pyenv-virtualenv.git $(PYENV_ROOT)/plugins/pyenv-virtualenv
 	@echo "[PYENV - BASH]"
 	echo '## pyenv Module virtualenv' >> ~/.bashrc
-	echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+	echo 'eval "$$(pyenv virtualenv-init -)"' >> ~/.bashrc
 	@echo "[PYENV - PROFILE]"
 	echo '## pyenv Module virtualenv' >> ~/.profile
-	echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.profile
+	echo 'eval "$$(pyenv virtualenv-init -)"' >> ~/.profile
 
 .PHONY: python_venv
 python_venv:
