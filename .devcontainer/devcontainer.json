@@ -11,5 +11,12 @@
 		"ghcr.io/devcontainers-contrib/features/neovim-apt-get:1": {},
 		"ghcr.io/devcontainers/features/python:1": {},
 		"ghcr.io/devcontainers/features/anaconda:1": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"golang.go"
+			]
+		}
 	}
 }

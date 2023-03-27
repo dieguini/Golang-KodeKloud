@@ -16,3 +16,13 @@ The most important parts of the environmentare divided in this two:
 ### [Make](Makefile)
 
 [Working on it...]
+
+### Magic fix command
+
+There is a magic fix command for the `\r` character
+
+```sh
+cd ~/.pyenv && find . -type f | xargs sed -i $'s/\r$//' && cd -
+```
+
+This is extra speccial when using WSL on Windows
